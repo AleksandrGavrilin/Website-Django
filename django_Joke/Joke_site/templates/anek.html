@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Анекдоты!</title>
+        <script src= "{% static 'js/joke.js' %}"> </script>
+   <link rel="stylesheet" type="text/css" href= "{% static 'styles/style_joke.css' %}">
+</head>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li class="{{ message.tags }}">
+            {{ message|safe }}
+            <a href="#" class="close">✖</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<script>
+function del () {
+const lay = document.getElementById("layout")
+const parent = lay.parentNode
+parent.removeChild(lay)
+}
+setTimeout(del, 3000)
+</script>
+<body background = "{% static 'img/jokes.jpg' %}">
+<form action="/logout/" target="_blank">
+   <button class = "submit_button">Выйти из профиля</button>
+  </form>
+<h1>5 случайных анекдотов</h1>
+  {% for anek, id, astar1, astar2, ustar in list_anek %}
+       <div class="wrapper"> {{ anek }}
+           <div class="avg">
+               <b>Средний рейтинг:</b> {% if astar1 >= 4 %}
+                <div style='color:rgb(24, 222, 44)'> {{ astar1 }}  </div>
+                {% elif astar1 >= 3 %}
+                <div style='color:rgb(255, 247, 8)'> {{ astar1 }}  </div>
+                {% elif astar1 >= 2 %}
+                <div style='color:rgb(255, 156, 8)'> {{ astar1 }}  </div>
+                {% elif astar1 >= 1 %}
+                <div style='color:rgb(235, 28, 66)'> {{ astar1 }}  </div>
+                {% else %}
+                <div style='color:rgb(84, 99, 110)'> {{ astar1 }}  </div>
+                {% endif %}
+                 ({{ astar2 }} чел.)
+            </div>
+           <div class="rate"><b>Ваш рейтинг:</b> <div id="anek_id_{{ id }}"></div></div>
+
+        </div>
+
+<script>
+starry({
+  target: document.getElementById("anek_id_{{ id }}"),
+  max: 5,
+  now: {{ ustar }},
+  click : stars => {
+    let data = new FormData();
+    data.append("stars", stars);
+    data.append("anek_id", {{ id }});
+    fetch("/save/", {
+      method: "post",
+      body: data
+    })
+    .then(res => res.text())
+    .then(txt => {
+      if (txt == "OK") { location.reload(); }
+      else { alert('Ваш рейтинг анекдота учтен!'); }
+    });
+  }
+});
+</script>
+
+    {% endfor %}
+<p><b>Выберите категорию анекдотов, по списку ниже:</b></p>
+<form action = '/anek/' method="post">
+  {% csrf_token %}
+    <div tabindex="1">
+<p><select size="1" name="category" class="dropdown">
+  <option disabled>Категория анекдота</option>
+    {% for cat, number in category %}
+    <option value={{ number }}> {{ cat }} </option>
+    {% endfor %}
+</select></p>
+    </div>
+  <p><input class = "submit_button" type="submit" value="Выбрать!"></p>
+ </form>
+<form action="/new/" target="_blank">
+   <button class = "submit_button"> Добавить свой анекдот!</button>
+  </form>
+    <footer>В базе данных <b>{{ n }}</b> анекдотов.</footer>
+</body>
+</html>

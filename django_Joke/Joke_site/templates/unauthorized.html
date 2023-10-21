@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Неавторизованный пользователь</title>
+ <link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='styles/style_joke.css') }}">
+
+</head>
+<body background = "{{ url_for('static', filename='img/jokes.jpg') }}">
+<h1>Неавторизованная попытка входа в систему!</h1>
+<p align = "center"><br><br>Для перехода на страницу, требуется авторизация пользователя.</p>
+<div class = "center">
+<form action="/" target="_blank">
+   <button class = "submit_button">Войти в систему</button>
+  </form>
+</div>
+</body>
+</html>

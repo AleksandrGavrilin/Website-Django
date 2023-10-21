@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход в систему</title>
+     <link rel="stylesheet" type="text/css" href= "{% static 'styles/style_joke.css' %}">
+
+</head>
+<body background = "{% static 'img/jokes.jpg' %}">
+  {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">
+                {{ message|safe }}
+                <a href="#" class="close">✖</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+  <form action="." method="post">
+    {% csrf_token %}
+    <div>
+      {% for field in form %}
+      <div class="form-group">
+          {{field.label_tag}}
+          <div>{{field}}</div>
+          {% if field.errors%}
+          {% for error in field.errors %}
+          <div class="alert alert-danger">
+              {{error}}
+          </div>
+          {% endfor %}
+          {% endif %}
+      </div>
+      {% endfor %}
+      </div>
+    <p><input type="submit" value="Войти в систему" class="submit_button"> </p>
+</form>
+<form action="/registration/" method="get">
+  {% csrf_token %}
+<p> <input type="submit" value="Зарегестрироваться в системе" class="submit_button"> </p>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+:root  {
+        --primary-color: hsl(195, 60%, 50%);
+        --secondary-color: hsl(275, 59%, 70%);
+}
+body   {
+        background-color: var(--primary-color);
+        font-family: Arial, Verdana, sans-serif;
+        color: white;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+        background-size: cover;
+        margin-left: auto;
+        margin-right: auto;
+        width: 500px;
+        max-width: 80%;
+        margin-align: center;
+        width: 50em;
+}
+h1     {
+        margin-left: auto;
+        margin-right: auto;
+        text-shadow: 4px 3px #32a1ce;
+        text-align: center;
+}
+footer {
+        position:fixed;
+        right: 0px;
+        bottom:0px;
+        height:20px;
+        width:100%;
+}
+
+table  {
+        width: 400px;
+        margin: auto;
+}
+
+.inp   {
+        margin-left: auto;
+        margin-right: auto;
+        text-shadow: 3px 2px hsl(275, 59%, 70%);
+        text-align: center;
+}
+.submit_button {
+        font-weight: bold;
+        font-size: 13px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 10px;
+        border: solid #32a1ce;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 20px;
+        transition-duration: 1.5s;
+
+}
+.submit_button: hover{
+        background-color: #4CAF50;
+        color: white;
+}
+ .button:after {
+        content: "";
+        background: #f1f1f1;
+        display: block;
+        position: absolute;
+        padding-top: 300%;
+        padding-left: 350%;
+        margin-left: -20px !important;
+        margin-top: -120%;
+        opacity: 0;
+        transition: all 0.8s
+}
+
+.button:active:after {
+        padding: 0;
+        margin: 0;
+        opacity: 1;
+        transition: 0s
+}
+
+.wrapper {
+        width: 1000px;
+        max-width: 80%;
+        border: thick double #32a1ce;
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50em;
+}
+
+input[type='text'], input[type='email'], input[type='password'] {
+        font-weight: bold;
+        width: 60%;
+        padding: 8px 20px;
+        margin: 2px 0;
+        border-radius: 5px;
+        border: solid #32a1ce;
+}
+
+textarea {
+        font-weight: bold;
+        width: 100%;
+        height: 150px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border-radius: 4px;
+        border: solid #32a1ce;
+        resize: none;
+        maxlength: 100;
+}
+.flashes {
+        font-weight: bold;
+        width: auto;
+        height: auto;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border-radius: 4px;
+        border: solid #32a1ce;
+        resize: none;
+        maxlength: 100;
+}
+.dropdown {
+        font-weight: bold;
+        border-radius: 4px;
+        background-color: #32a1ce;
+        border: solid #32a1ce;
+        color: white;
+}
+
+.center {
+        width: 100%;
+        text-align: center;
+}
+
+.word {
+        font-size: 18px;
+        word-wrap: break-word;
+}
+
+/* (C) STAR RATING */
+/* (C1) CUSTOM "STAR ICON ONLY" FONT */
+/* https://icomoon.io/ */
+@font-face {
+        font-family: "icomoon";
+        src: url(icomoon.woff);
+}
+
+/* (C2) STAR RATING WRAPPER */
+.starwrap { display: flex; }
+
+/* (C3) STAR ICON */
+.star {
+        font-family: "icomoon" !important;
+        font-size: 24px; color: #d1d1d1;
+        font-style: normal; font-weight: normal; font-variant: normal;
+        text-transform: none; line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+}
+.star::before { content: "\e9d9"; }
+.star.on { color: #ffe000; }
+

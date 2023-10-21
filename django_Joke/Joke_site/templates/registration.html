@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" type="text/css" href= "{% static 'styles/style_joke.css' %}">
+
+</head>
+<body background = "{% static 'img/jokes.jpg' %}">
+  <h1>Регистрация нового пользователя</h1>
+  {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">
+                {{ message|safe }}
+                <a href="#" class="close">✖</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+  <form action="." method="post">
+    {% csrf_token %}
+    <div>
+      {% for field in user_form %}
+      <div class="form-group">
+          {{field.label_tag}}
+          <div>{{field}}</div>
+          {% if field.errors%}
+          {% for error in field.errors %}
+          <div class="alert alert-danger">
+              {{error}}
+          </div>
+          {% endfor %}
+          {% endif %}
+      </div>
+      {% endfor %}
+      </div>
+    <p><input type="submit" value="Создать новый аккаунт" class="submit_button"></p>
+</form>
+</body>
+</html>
